@@ -20,15 +20,18 @@
 	<div id="compound">
 		<div id="showall">
 		
-			<table border="1">
-            	{% for row in data: %}
-              	 <tr>
-                   	 {% for cell in row: %}
-                        <td>{{cell}}</td>
-                    {% endfor %}
-                 </tr>
-             	{% endfor %}
-        	</table>
+			<table>
+
+			{% for p in d %}
+		                 
+          	<tr>
+   			 	<td>{{p['id']}}</td>
+   			 	<td>{{p['description']}}</td>
+   			 	<td>{{p['price']}}</td>
+		  	</tr>
+          
+			{% endfor %}
+	</table>	
 		
 		</div>
 

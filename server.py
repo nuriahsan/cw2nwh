@@ -15,18 +15,32 @@ def indexPage():
 	print (num)
 	return render_template("index.html",num=num)
 
+def productList():  
+	con = sqlite3.connect("store.db")
+	cur = con.cursor()
+	cur.execute("select * from product")
+	rows = cur.fetchall()
+	p =[]
+	content={}
+	for result in rows:
+		content = {'id':result[0],'description':result[1],'price':result[2]}
+		p.append(content)
+		content={}
+	return json.dumps(p,indent=2)
+
 @app.route('/queue')
 def queuePage():
 	return render_template("queue.html")
 
 @app.route('/cust/<order_num>')
 def custPage(order_num):
-	conn=sqlite3.connect("store.db")
-	c=conn.cursor()
-	query1=("select * from product;")
-	c.execute(query1)
-	data=c.fetchall()
-	return render_template('cust.html',data=data,order_num=order_num)
+	d = json.loads(productList())
+	# conn=sqlite3.connect("store.db")
+	# c=conn.cursor()
+	# query1=("select * from product;")
+	# c.execute(query1)
+	# data=c.fetchall()
+	return render_template('cust.html',order_num=order_num,d=d)
 
 @app.route('/order/<order_num>')
 def getOrder(order_num):
