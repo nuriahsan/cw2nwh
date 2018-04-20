@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Customer Create Order Page</title>
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/cust.js"></script>
+	<style type="text/css">
+	#showall,#showall1 {
+	   	width:45%;
+	
+		display: inline-block;
+	   
+	}
+
+
+	</style>
+</head>
+<body>
+	<h1>Customer Create Order Page</h1>
+	<div id="compound">
+		<div id="showall">
+		
+			<table border="1">
+            	{% for row in data: %}
+              	 <tr>
+                   	 {% for cell in row: %}
+                        <td>{{cell}}</td>
+                    {% endfor %}
+                 </tr>
+             	{% endfor %}
+        	</table>
+		
+		</div>
+
+		<div id="showall1">
+
+			<div id='order_num'>{{order_num}}</div>
+				<div id='debug'></div>
+			<div>
+				<b>Product ID</b>
+				<b>Product Description</b>
+				<b>Qty</b>
+				<b>Price</b>
+			</div>
+		
+			<div id="order_list"></div>
+			<div >
+				<input id='new_product'>
+				<input type="button" id="addToOrder" value="Add To Order">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
